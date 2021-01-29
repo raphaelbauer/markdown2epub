@@ -71,7 +71,7 @@ public class Markdown2Epub {
 
             // let's split that one html file to multiple html files.
             // This is needed to get a nice directory structure in epub / mobi.
-            authr.splitHtmlIntoSectionsAndNiceSingleHtmlFiles(targetDirectory, targetDirWithSplittedFiles);
+            authr.splitHtmlIntoSectionsAndNiceSingleHtmlFiles(targetDirectory, targetDirWithSplittedFiles, title);
 
             // Let's parse the single html files and combine them in a nicely structured epub
             EPubCreator ePubCreator = new EPubCreator();
@@ -121,7 +121,8 @@ public class Markdown2Epub {
 
     public void splitHtmlIntoSectionsAndNiceSingleHtmlFiles(
             Path targetDirectory,
-            Path targetDirWithSplittedFiles) throws Exception {
+            Path targetDirWithSplittedFiles,
+            String title) throws Exception {
         String file = targetDirectory.resolve("index.html").toString();
         String content = Files.readString(Paths.get(file));
 
@@ -136,7 +137,7 @@ public class Markdown2Epub {
             if (line.startsWith("<h1>")) {
                 h1Count++;
                 if (!currentSectionFileName.isBlank()) {
-                    String htmlContent = makeNiceXHtml(currentSection);
+                    String htmlContent = makeNiceXHtml(currentSection, title);
                     writeToFile(htmlContent, currentSectionFileName);
 
                     h2Count = 0;
@@ -158,7 +159,7 @@ public class Markdown2Epub {
 
             } else if (line.startsWith("<h2>")) {
                 if (!currentSectionFileName.isBlank()) {
-                    String htmlContent = makeNiceXHtml(currentSection);
+                    String htmlContent = makeNiceXHtml(currentSection, title);
                     writeToFile(htmlContent, currentSectionFileName);
 
                     h2Count++;
@@ -186,18 +187,18 @@ public class Markdown2Epub {
 
         // write out last section (not caught by loop):
         if (!currentSectionFileName.isBlank()) {
-            String htmlContent = makeNiceXHtml(currentSection);
+            String htmlContent = makeNiceXHtml(currentSection, title);
             writeToFile(htmlContent, currentSectionFileName);
         }
 
     }
 
-    private String makeNiceXHtml(String content) {
+    private String makeNiceXHtml(String content, String title) {
         String xHtmlHeader
                 = "<?xml version='1.0' encoding='utf-8'?>\n"
                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>\n"
                 + "    <meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n"
-                + "    <title>CTO Cookbook</title>"
+                + "    <title>" + title + "</title>"
                 + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"index.css\" /> "
                 + "  </head>";
 

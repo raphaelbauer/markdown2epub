@@ -41,7 +41,7 @@ First of all you have to compile the source code of this repository and run
 
     mvn clean package
 
-This will create a jar file called amardown2epub-1.0-SNAPSHOT-jar-with-dependencies.jar  in folder target.
+This will create a jar file called markdown2epub-1.0-SNAPSHOT-jar-with-dependencies.jar  in folder target.
 
 **Note:** This could be done more user-friendly, but I don't have much time right now. Feel free to improve that :)
 
@@ -52,7 +52,7 @@ You can check out the example directory and play around with it.
 
 Then run
 
-    java -jar ../target/mardown2epub-1.0-SNAPSHOT-jar-with-dependencies.jar 
+    java -jar ../target/markdown2epub-1.0-SNAPSHOT-jar-with-dependencies.jar 
 
 This will create a file called output.epub in the same folder. That's it.
 You are done.
