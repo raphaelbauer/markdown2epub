@@ -3,9 +3,11 @@
 ## What problem does this solve?
 
 I like to write my ebooks as markdown file. 
-But I honestly could not find a straight-forward solution to create a nice epub out of that markdown.
+I also don't want to have any publisher lock-in when writing my ebooks.
 
-So I created a tiny command line application that can do that for you.
+But I honestly could not find a straight-forward solution to create a nice epub out of a simple markdown file.
+
+So I created a tiny command line application that can do that for you. 
 
 ## Credits
 
@@ -46,13 +48,14 @@ This will create a jar file called amardown2epub-1.0-SNAPSHOT-jar-with-dependenc
 Then cd into the directory where your ebook markdown lives. 
 You can check out the example directory and play around with it.
 
+    cd example
+
 Then run
 
-    cd example
     java -jar ../target/mardown2epub-1.0-SNAPSHOT-jar-with-dependencies.jar 
 
 This will create a file called output.epub in the same folder. That's it.
-You are don.
+You are done.
 
 ## Cool things
 
@@ -61,6 +64,7 @@ You are don.
 
 ## Bad things
 
+- Very minimal. There's no support for images right now. I did not need it, so I did not add support...
 - Not a single test. Yea. I just wanted to release and document this. So no tests, but that might change :)
 
 ## Where to go from here
