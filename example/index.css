@@ -1,0 +1,40 @@
+/* for printing the pages via eg pdf */
+@page {
+    margin: 40mm 40mm 40mm 40mm;  
+} 
+
+div.inner {
+    margin-left: auto;
+    max-width: 500px;
+    margin-right: auto;
+}
+
+div.chapter {
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    font-weight: lighter;
+    font-size: 21px;
+    line-height: 1.58;
+}
+h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+
+}
+h2 {
+    font-size: 30px;
+
+}
+h3 {
+    font-size: 21px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+li {
+    font-size: 21px;
+}
