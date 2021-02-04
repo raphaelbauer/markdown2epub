@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.commonmark.Extension;
 import org.commonmark.ext.autolink.AutolinkExtension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -103,16 +105,25 @@ public class Markdown2Epub {
                 .collect(Collectors.joining("\n"));
 
         // convert into html
+        List<Extension> extensions = Arrays.asList(
+                // github style tables
+                TablesExtension.create(),
+                // automatically convert http:// to <a href...>
+                AutolinkExtension.create()
+                );
+        
+        
         Parser parser = Parser
                 .builder()
-                .extensions(
-                        // automatically convert http:// to <a href...>
-                        Collections.singleton(AutolinkExtension.create()))
+                .extensions(extensions)
                 .build();
 
         Node document = parser.parse(contentWithoutComments);
 
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        HtmlRenderer renderer = HtmlRenderer
+                .builder()
+                .extensions(extensions)
+                .build();
 
         String html = renderer.render(document);
 

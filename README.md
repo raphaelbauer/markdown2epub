@@ -61,6 +61,8 @@ You are done.
 
 - You can use // at the beginning of a file in markdown to mark it as a comment. The line will be removed from the final epub.
 - h1, h2 headings will be nicely splitted so that your epub reader can create a nice toc with proper navigation.
+- http addresses will be converted automatically into links
+- Tables can be created using the github approach: https://docs.github.com/en/github/writing-on-github/organizing-information-with-tables
 
 ## Bad things
 
